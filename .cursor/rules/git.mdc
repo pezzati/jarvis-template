@@ -1,0 +1,52 @@
+---
+description: Git branch names, Conventional Commits with ! for breaking, trunk-based workflow.
+alwaysApply: true
+---
+
+# Git
+
+Trunk-based. `main` is always shippable. Short-lived branches. PR into `main`. Squash merge. Do not force-push `main`.
+
+## Branch
+
+```
+<type>/<adr-or-issue>-<short-description>
+```
+
+- `type`: `feat` `fix` `docs` `refactor` `test` `chore` `ci` `perf` `revert` `rfc`
+- `adr-or-issue`: ADR number (`0001` or `adr-0001`) when implementing an accepted RFC; otherwise the GitHub issue number.
+- `short-description`: lowercase kebab-case, few words.
+- One ADR (or one issue) per branch. Do not pile unrelated work.
+
+Examples: `feat/0001-session-store`, `fix/42-null-user`, `rfc/0003-rate-limits`, `chore/12-gitignore`
+
+Trivial loop-skip (typo, one-liner, no ticket): `chore/skip-<slug>`.
+
+Create the branch before `/implement`. Never commit RFC/ADR/plan work on `main`.
+
+## Commit
+
+[Conventional Commits](https://www.conventionalcommits.org/):
+
+```
+<type>(<optional-scope>): <description>
+```
+
+- Imperative, lowercase description, no trailing period.
+- `scope` optional: area (`auth`, `rfc`, `harness`).
+- Breaking change: put `!` after type or after `)`: `feat(auth)!: replace sessions with jwt`
+- Body optional. Footer `BREAKING CHANGE: <what>` only when `!` is used and the human needs the migration note.
+- One logical change per commit. Do not mix format-only with behavior.
+
+Examples:
+
+```
+feat(auth): persist sessions in redis
+fix(api): reject empty user id
+docs(rfc): add success criteria to 0001
+feat(auth)!: drop cookie sessions
+```
+
+## Pull request
+
+Title matches the squash commit (`type(scope): description`). Body links RFC and ADR paths. CI must be green.

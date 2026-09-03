@@ -1,0 +1,18 @@
+---
+description: Route codebase questions to Graphify vs codebase-memory vs grep. Do not search both graphs by default.
+alwaysApply: true
+---
+
+# Context routing
+
+Pick **one** path. Do not query Graphify and codebase-memory for the same question.
+
+1. **Structural code** — what calls X, blast radius, types, HTTP routes, dead code, Cypher.
+   Use codebase-memory MCP (`index_repository` / search / trace / impact). If MCP is down, say so and fall back to Graphify only if the question is also conceptual.
+
+2. **Meaning, docs, schemas, “why”** — architecture narrative, ADRs/RFCs, SQL/config, communities, god nodes.
+   Use Graphify: `graphify query "..."`, `graphify explain`, `graphify path`, or `graphify-out/GRAPH_REPORT.md` for a broad map. Do not paste the whole report.
+
+3. **Last resort** — known filename, or a 1–2 file local edit: Read / Grep.
+
+If `graphify-out/` is missing or MCP is unconfigured, tell the human to run `./scripts/bootstrap.sh`. Do not invent a graph.

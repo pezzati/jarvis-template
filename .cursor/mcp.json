@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "codebase-memory": {
+      "command": "bash",
+      "args": ["scripts/codebase-memory-mcp.sh"]
+    }
+  }
+}
