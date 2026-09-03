@@ -34,19 +34,37 @@ Create the branch before `/implement`. Never commit RFC/ADR/plan work on `main`.
 
 - Imperative, lowercase description, no trailing period.
 - `scope` optional: area (`auth`, `rfc`, `harness`).
+- **Body required:** after a blank line, bullet list of changes from the diff (what landed, not a repeat of the subject).
 - Breaking change: put `!` after type or after `)`: `feat(auth)!: replace sessions with jwt`
-- Body optional. Footer `BREAKING CHANGE: <what>` only when `!` is used and the human needs the migration note.
+- Footer `BREAKING CHANGE: <what>` only when `!` is used and the human needs the migration note.
 - One logical change per commit. Do not mix format-only with behavior.
 
 Examples:
 
 ```
 feat(auth): persist sessions in redis
-fix(api): reject empty user id
-docs(rfc): add success criteria to 0001
+
+- store session tokens in redis
+- drop in-memory session map
+```
+
+```
 feat(auth)!: drop cookie sessions
+
+- issue jwt access tokens
+- remove session cookie middleware
+
+BREAKING CHANGE: clients must send Authorization bearer tokens
 ```
 
 ## Pull request
 
-Title matches the squash commit (`type(scope): description`). Body links RFC and ADR paths. CI must be green.
+When the user asks to open a pull request (merge request), create one. Do not open a PR unsolicited after a commit.
+
+1. Must be on a feature branch, not `main`. Push with `git push -u origin HEAD` if needed.
+2. Title: squash Conventional Commit — `type(scope): description` (latest subject or the PR theme).
+3. Body: fill [`.github/PULL_REQUEST_TEMPLATE.md`](.github/PULL_REQUEST_TEMPLATE.md). **Summary** and **Changes** come from `git log main..HEAD` (subjects + bullet bodies). Link RFC / ADR / plan paths when this branch implements one. Check **Breaking** if any commit has `!`.
+4. Create with `gh pr create --title "..." --body "$(cat <<'EOF' ... EOF)"` (HEREDOC, template structure). Base `main`.
+5. **The reply to the user must include the pull request URL.** If `gh` fails, print the error and the compare URL; do not pretend the PR exists.
+
+Use `/pr` when that skill is available. Squash merge. CI green if the repo has checks.

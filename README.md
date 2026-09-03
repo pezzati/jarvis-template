@@ -62,7 +62,7 @@ Trunk-based: short-lived branches off `main`, squash-merge PRs. Details in `.cur
 - Branch: `feat/0001-session-store` (`type` / ADR or issue / slug)
 - Commit: `feat(auth): persist sessions in redis`
 - Breaking: `feat(auth)!: drop cookie sessions`
-- `/commit` writes the message from the diff. Do not commit on `main`.
+- `/commit` writes subject + bullet body from the diff. `/pr` opens a GitHub PR from the template and returns the URL. Do not commit on `main`.
 
 ## Fmt hook
 
@@ -83,7 +83,7 @@ Do not vendor the Caveman proxy (BSL-1.1).
 ```
 AGENTS.md                 always-on contract (keep short)
 .cursor/rules/            Ponytail, Caveman lite, routing
-.cursor/skills/           /rfc /rfc-accept /plan /implement /audit /review /commit
+.cursor/skills/           /rfc /rfc-accept /plan /implement /audit /review /commit /pr
 .cursor/mcp.json          codebase-memory
 docs/rfcs/                RFC template + per-status dirs
 docs/decisions/           ADR template
