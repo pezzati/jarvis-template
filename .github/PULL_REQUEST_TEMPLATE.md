@@ -1,6 +1,12 @@
 ## Summary
 
-<!-- Conventional Commit title will be the squash message: type(scope): description -->
+<!-- squash title: type(scope): description -->
+
+## Changes
+
+<!-- bullets from git log commit bodies on this branch -->
+
+-
 
 ## RFC / ADR
 
