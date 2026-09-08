@@ -14,7 +14,7 @@ Trunk-based. `main` is always shippable. Short-lived branches. PR into `main`. S
 ```
 
 - `type`: `feat` `fix` `docs` `refactor` `test` `chore` `ci` `perf` `revert` `rfc`
-- `adr-or-issue`: ADR number (`0001` or `adr-0001`) when implementing an accepted RFC; otherwise the GitHub issue number.
+- `adr-or-issue`: **ADR** number (`0012` or `adr-0012`), not the RFC number. One RFC may have many ADRs. Otherwise the GitHub issue number.
 - `short-description`: lowercase kebab-case, few words.
 - One ADR (or one issue) per branch. Do not pile unrelated work.
 
@@ -63,7 +63,7 @@ When the user asks to open a pull request (merge request), create one. Do not op
 
 1. Must be on a feature branch, not `main`. Push with `git push -u origin HEAD` if needed.
 2. Title: squash Conventional Commit — `type(scope): description` (latest subject or the PR theme).
-3. Body: fill [`.github/PULL_REQUEST_TEMPLATE.md`](.github/PULL_REQUEST_TEMPLATE.md). **Summary** and **Changes** come from `git log main..HEAD` (subjects + bullet bodies). Link RFC / ADR / plan paths when this branch implements one. Check **Breaking** if any commit has `!`.
+3. Body: fill [`.github/PULL_REQUEST_TEMPLATE.md`](.github/PULL_REQUEST_TEMPLATE.md). **Summary** and **Changes** come from `git log main..HEAD` (subjects + bullet bodies). Link RFC and the ADR(s) this branch implements. Check **Breaking** if any commit has `!`.
 4. Create with `gh pr create --title "..." --body "$(cat <<'EOF' ... EOF)"` (HEREDOC, template structure). Base `main`.
 5. **The reply to the user must include the pull request URL.** If `gh` fails, print the error and the compare URL; do not pretend the PR exists.
 

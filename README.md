@@ -26,7 +26,7 @@ Bootstrap installs what it can and prints hints for the rest. Missing Graphify o
 | Caveman | Short chat. Code, paths, and errors stay exact. Lite, always on. |
 | Graphify | Conceptual map: code + docs + schemas. `/graphify`, `graphify query`. |
 | codebase-memory | Structural graph via MCP: calls, types, blast radius, routes. |
-| RFC → ADR → plan | Decide before coding. |
+| RFC → ADRs → plan | Decide before coding. One journey RFC, many ADRs. |
 
 Always-on rules stay small. Long procedures are slash skills.
 
@@ -34,10 +34,11 @@ Always-on rules stay small. Long procedures are slash skills.
 
 ```
 /rfc          draft RFC in docs/rfcs/draft/
-/rfc-accept   move to accepted/, write ADR
-/plan         detailed design from the ADR
-/implement    execute the plan
-/audit        check against RFC + ADR + plan
+/rfc-accept   move to accepted/, write one ADR per independent decision
+/write-adr    add another ADR to an accepted RFC
+/plan         detailed design for one ADR (file number = ADR number)
+/implement    execute that plan
+/audit        check that ADR; RFC implemented when all its ADRs are
 /review       diff review + Ponytail delete-list
 ```
 
@@ -59,7 +60,7 @@ See `.cursor/rules/context-routing.mdc`.
 
 Trunk-based: short-lived branches off `main`, squash-merge PRs. Details in `.cursor/rules/git.mdc`.
 
-- Branch: `feat/0001-session-store` (`type` / ADR or issue / slug)
+- Branch: `feat/0012-session-store` (`type` / **ADR** number or issue / slug). ADR number is not the RFC number.
 - Commit: `feat(auth): persist sessions in redis`
 - Breaking: `feat(auth)!: drop cookie sessions`
 - `/commit` writes subject + bullet body from the diff. `/pr` opens a GitHub PR from the template and returns the URL. Do not commit on `main`.
@@ -83,7 +84,7 @@ Do not vendor the Caveman proxy (BSL-1.1).
 ```
 AGENTS.md                 always-on contract (keep short)
 .cursor/rules/            Ponytail, Caveman lite, routing
-.cursor/skills/           /rfc /rfc-accept /plan /implement /audit /review /commit /pr
+.cursor/skills/           /rfc /rfc-accept /write-adr /plan /implement /audit /review /commit /pr
 .cursor/mcp.json          codebase-memory
 docs/rfcs/                RFC template + per-status dirs
 docs/decisions/           ADR template

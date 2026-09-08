@@ -4,14 +4,14 @@ Cursor-first harness. Prefer project skills over inventing process.
 
 ## Delivery loop
 
-RFC → accept/ADR → plan → implement → audit → review.
+RFC → accept (one or more ADRs) → plan per ADR → implement → audit → review.
 
 Skip the loop only for trivial fixes (typo, one-liner). Architecture or user-visible behavior starts at `/rfc`.
 
 - Draft RFCs: `docs/rfcs/draft/`
 - Folder is status. Skills `git mv` the file when status changes.
-- `/plan` is refused until an RFC is in `docs/rfcs/accepted/` and its ADR exists.
-- Detailed design lives in `/plan`, not in the RFC.
+- `/plan` is refused until an RFC is in `docs/rfcs/accepted/` and a named ADR exists. Plan number matches the ADR, not the RFC.
+- `/write-adr` adds more ADRs to an accepted RFC. Detailed design lives in `/plan`, not in the RFC.
 
 ## Context routing
 

@@ -5,7 +5,8 @@
 - Author:
 - Created: YYYY-MM-DD
 - Last-Updated: YYYY-MM-DD
-- ADR: (empty until accepted; then docs/decisions/NNNN-slug.md)
+- ADRs:
+  - (empty until accepted; then one or more docs/decisions/MMMM-slug.md)
 
 ## Summary
 
@@ -46,8 +47,9 @@ At least two real alternatives, including "do nothing."
 
 ## Recommended solution
 
-The author's pick, with rationale. This is what an accepted RFC will freeze into an ADR.
-Do not include detailed design here. Components, APIs, file list, and sequencing belong in `/plan`.
+The author's pick, with rationale. Do not include detailed design (that is `/plan`).
+
+List **independent decisions** as bullets. Each bullet becomes one ADR at `/rfc-accept`. One bullet is fine. Do not split one pick into two bullets.
 
 ## Scope
 
@@ -59,7 +61,7 @@ What could go wrong; what we still do not know.
 
 ## Success criteria
 
-Testable checks the later `/audit` will use.
+Testable checks later `/audit` will use (per ADR that covers them).
 
 ## Open questions
 

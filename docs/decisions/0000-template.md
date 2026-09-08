@@ -1,6 +1,6 @@
-# ADR-NNNN: Title
+# ADR-MMMM: Title
 
-- Status: Accepted | Superseded | Deprecated
+- Status: Accepted | Implemented | Superseded | Deprecated
 - Date: YYYY-MM-DD
 - RFC: docs/rfcs/accepted/NNNN-slug.md
 
@@ -10,7 +10,7 @@ The problem and constraints, short. Details live in the RFC.
 
 ## Decision
 
-What we will do. The frozen choice.
+What we will do. One reversible pick. Not a copy of the RFC.
 
 ## Consequences
 

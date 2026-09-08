@@ -11,7 +11,7 @@
 ## RFC / ADR
 
 - RFC:
-- ADR:
+- ADR: (this branch; one ADR per branch)
 - Plan:
 
 Skip these for `chore/skip-*` trivial fixes.

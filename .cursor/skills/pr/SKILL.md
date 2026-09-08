@@ -17,7 +17,7 @@ Follow `.cursor/rules/git.mdc`. Do not open a PR unless the user asked.
 5. Body: copy structure from `.github/PULL_REQUEST_TEMPLATE.md`.
    - **Summary:** the PR title / theme.
    - **Changes:** bullet list assembled from commit **bodies** (and subjects if a body is missing).
-   - **RFC / ADR / Plan:** paths if this branch implements a decision; skip for `chore/skip-*`.
+   - **RFC / ADR / Plan:** RFC path, **this branch's ADR**, and plan; skip for `chore/skip-*`.
    - **Breaking:** check if any commit subject contains `!`.
    - **Test plan:** what was run, or "not run" if none.
 6. `gh pr create --title "..." --body "$(cat <<'EOF' ... EOF)"` with base `main`.
