@@ -15,4 +15,5 @@ Execute an existing plan for **one ADR**. Do not invent scope.
 3. Query Graphify or codebase-memory (see routing rule) before wandering the tree.
 4. Climb the Ponytail ladder. Shortest working diff. No extra files.
 5. Non-trivial logic: leave **one** runnable check (smallest thing that fails if the logic breaks). Trivial one-liners need no test.
-6. Stop when the plan's sequence is done. Do not `/audit` unless asked.
+6. New I/O and error paths: log per `.cursor/rules/logging.mdc` (JSON, levels, context fields, no secrets).
+7. Stop when the plan's sequence is done. Do not `/audit` unless asked.

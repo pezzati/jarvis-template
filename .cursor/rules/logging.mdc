@@ -1,0 +1,56 @@
+---
+description: Language-agnostic JSON logging for generated code. Reuse existing logger, correct levels, context fields, no secrets.
+alwaysApply: true
+---
+
+# Logging
+
+Generated code logs. Missing logs on a failure path is a bug. A log on every line is also a bug.
+
+## Reuse
+
+Search the repo for the existing logger. Use it. Do not add a logging library. If none, use the stdlib (`logging`, `log/slog`, `log`; platform `console` only when that is the stdlib).
+
+## Where
+
+Trust boundaries (inbound request/job start, outbound call **failure**) and error paths that would otherwise be silent. Pure functions and trivial one-liners: no logs unless asked.
+
+## Levels
+
+Map names to the project's logger (`fatal` / `panic` / `critical` / `log.Fatal` as available). If there is no FATAL, use the highest level and halt. Do not INFO loop iterations.
+
+- **DEBUG** — internal state, variable values, loop iterations (dev only)
+- **INFO** — normal lifecycle: start, stop, config loaded, request received
+- **WARN** — recoverable: retries, fallbacks, deprecated usage
+- **ERROR** — failures that need attention but do not crash the process
+- **FATAL/CRITICAL** — unrecoverable; halt immediately
+
+## Shape
+
+Emit **JSON** (one object per line). Use the existing JSON/structured handler; else stdlib JSON. Message is stable English; extra context is JSON fields, not interpolated dumps. Stack traces only on ERROR/FATAL as a field, not as the message.
+
+Every entry, at minimum:
+
+- `timestamp` — ISO 8601, UTC
+- `level`
+- `message`
+- `service` or `component` — existing service name / module; do not invent a brand
+- `trace_id` or `correlation_id` — reuse request/job context if present; otherwise create and propagate a request-scoped stdlib UUID. Do not add OpenTelemetry/Jaeger.
+
+## Context, not just events
+
+Message names the event; fields carry IDs and state so someone can investigate without a debugger.
+
+Bad: `"User login failed"`
+
+Good: `"User login failed"` with `{ "user_id": "u_123", "reason": "invalid_password", "attempt": 3 }`
+
+Include IDs, relevant state, and enough to reproduce. Reason **codes** only — never the password or token.
+
+## Never
+
+Secrets, tokens, passwords, cookies, full auth headers, raw PII, entire request/response bodies. Truncate identifiers. Do not log payloads “for debug” in committed code.
+
+## Errors
+
+Log then return/propagate. Do not log-and-swallow. Do not log the same error at every layer — log at the boundary that handles it.

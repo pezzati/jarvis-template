@@ -31,7 +31,7 @@ See `.cursor/rules/context-routing.mdc`. Short version:
 
 ## Safety
 
-Do not commit secrets. Do not force-push `main`.
+Do not commit secrets. Do not force-push `main`. Generated code follows `.cursor/rules/logging.mdc`.
 
 Git: trunk-based. Branch `type/adr-or-issue-slug`. Commit `type(scope): description`; `!` for breaking. See `.cursor/rules/git.mdc`.
 
